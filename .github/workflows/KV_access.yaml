@@ -8,9 +8,17 @@ on:
         options:
           - allow
           - disallow
+      
+      getSecret:
+        default: "da"
+        type: choice
+        options:
+          - da
+          - ne
 
 env:
   KEYVAULT_NAME: "clustersecrets"
+  SECRET_NAME: "testSecret"
   AZURE_CLIENT_ID: "fd12270e-bde4-4e04-ba38-7123f295c33b"
   AZURE_TENANT_ID: "b00367e2-193a-4f48-94de-7245d45c0947"
   AZURE_SUBSCRIPTION_ID: "2bae9ddb-756e-421b-83f0-80795ceb6e59"
@@ -41,7 +49,12 @@ jobs:
         run: |
           sh ./devops/allow_access_to_KV_for_host.sh ${{ env.KEYVAULT_NAME }} ${{ env.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Allow one-time access to Key Vault
+      - name: Revoke one-time access to Key Vault
         if: inputs.operation == 'disallow'
         run: |
           sh ./devops/disallow_access_to_KV_for_host.sh ${{ env.KEYVAULT_NAME }} ${{ env.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Get secret
+        if: inputs.getSecret == 'da'
+        run: |
+          az keyvault secret show --name "$SECRET_NAME" --vault-name "$KEYVAULT_NAME"
