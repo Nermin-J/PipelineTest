@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
+
+    steps:
       - name: Allow one-time access to Key Vault
         run: |
           sh ./devops/allow_access_to_KV_for_host.sh ${{ env.KEYVAULT_NAME }} ${{ env.SUBSCRIPTION_ID }}
