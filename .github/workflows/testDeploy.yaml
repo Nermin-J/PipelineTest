@@ -15,4 +15,4 @@ jobs:
     steps:
       - name: Allow one-time access to Key Vault
         run: |
-          sh ../../devops/allow_access_to_KV_for_host.sh ${{ env.KEYVAULT_NAME }} ${{ env.SUBSCRIPTION_ID }}
+          sh ./devops/allow_access_to_KV_for_host.sh ${{ env.KEYVAULT_NAME }} ${{ env.SUBSCRIPTION_ID }}
