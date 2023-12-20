@@ -1,0 +1,19 @@
+name: Test allow/disallow access
+on:
+  push:
+    branches:
+      - master
+
+env:
+  KEYVAULT_NAME: KV1
+  SUBSCRIPTION_ID: sub1
+
+jobs:
+  allow-disallow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Allow one-time access to Key Vault
+        run: |
+          # sh ./devops/allow_access_to_KV_for_host.sh ${{ env.KEYVAULT_NAME }} ${{ env.SUBSCRIPTION_ID }}
+          echo ${{ env.KEYVAULT_NAME }} ${{ env.SUBSCRIPTION_ID }}
