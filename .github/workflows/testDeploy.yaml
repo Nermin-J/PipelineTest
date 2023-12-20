@@ -11,6 +11,11 @@ env:
   AZURE_TENANT_ID: "b00367e2-193a-4f48-94de-7245d45c0947"
   AZURE_SUBSCRIPTION_ID: "2bae9ddb-756e-421b-83f0-80795ceb6e59"
 
+permissions:
+    id-token: write
+    contents: read
+    issues: write
+
 jobs:
   allow-disallow:
     runs-on: ubuntu-latest
