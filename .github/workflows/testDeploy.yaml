@@ -7,13 +7,25 @@ on:
 env:
   KEYVAULT_NAME: KV1
   SUBSCRIPTION_ID: sub1
+  AZURE_CLIENT_ID: "fd12270e-bde4-4e04-ba38-7123f295c33b"
+  AZURE_TENANT_ID: "b00367e2-193a-4f48-94de-7245d45c0947"
+  AZURE_SUBSCRIPTION_ID: "2bae9ddb-756e-421b-83f0-80795ceb6e59"
 
 jobs:
   allow-disallow:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
       - uses: actions/checkout@main
+
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ env.AZURE_CLIENT_ID }}
+          tenant-id: ${{ env.AZURE_TENANT_ID }}
+          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          enable-AzPSSession: false
 
       - name: Allow one-time access to Key Vault
         run: |
