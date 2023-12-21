@@ -6,7 +6,7 @@ STORAGE_ACCOUNT_SUBSCRIPTION_ID=$2
 host_ip=$(curl https://api.ipify.org)
 echo Host IP is: $host_ip
 
-az account set --name $STORAGE_ACCOUNT_SUBSCRIPTION_ID
-az storage account update --name $STORAGE_ACCOUNT_NAME --public-network-access Enabled --default-action Deny
-az storage account network-rule add --account-name $STORAGE_ACCOUNT_NAME --ip-address $host_ip
+az account set --name $STORAGE_ACCOUNT_SUBSCRIPTION_ID --output none
+az storage account update --name $STORAGE_ACCOUNT_NAME --public-network-access Enabled --default-action Deny --output none
+az storage account network-rule add --account-name $STORAGE_ACCOUNT_NAME --ip-address $host_ip --output none
 echo Access to storage account \"$STORAGE_ACCOUNT_NAME\" for host IP $host_ip granted
