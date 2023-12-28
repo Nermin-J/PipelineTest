@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: Checkout
-         uses: actions/checkout@main
+        uses: actions/checkout@main
 
       - name: Log in to Azure
         uses: azure/login@v1
@@ -47,6 +47,7 @@ jobs:
       - name: Allow one-time access to Key Vault
         if: inputs.operation == 'allow'
         run: |
+          return 1
           sh ./devops/allow_access_to_KV_for_host.sh ${{ env.KEYVAULT_NAME }} ${{ env.AZURE_SUBSCRIPTION_ID }}
 
       - name: Revoke one-time access to Key Vault
