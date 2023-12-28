@@ -1,0 +1,1 @@
+[![Test allow/disallow KV access](https://github.com/Nermin-J/PipelineTest/actions/workflows/KV_access.yaml/badge.svg)](https://github.com/Nermin-J/PipelineTest/actions/workflows/KV_access.yaml)
