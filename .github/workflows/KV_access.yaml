@@ -44,6 +44,15 @@ jobs:
           subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
           enable-AzPSSession: false
 
+      - name: Allow host
+        id: variable
+        run: |
+          echo "$(modify_access_to_key_vault.sh $KEYVAULT_NAME $CLUSTER_SUBSCRIPTION_ID "allow host [and ips]")" >> $GITHUB_OUTPUT
+
+      - name: Print
+        run: |
+          echo ${{ steps.variable.outputs }}
+
       - name: Allow one-time access to Key Vault
         if: inputs.operation == 'allow'
         run: |
