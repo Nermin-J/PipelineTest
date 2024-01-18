@@ -1,4 +1,4 @@
-name: Test allow/disallow KV access
+name: Test allow/disallow KV access new
 on:
   workflow_dispatch:
     inputs:
