@@ -105,7 +105,7 @@ allow_access_to_key_vault_for_ips(){
     # If all desired IPs are addedd to the list of allowed IPs, continue and check if network access is enabled 
     if [[ "$publicNetworkAccess"=="Enabled" ]]; then
         echo "[INFO] Access to Key vault '$KEY_VAULT_NAME' for host IPs '$list_of_allowed_ips' has been granted successfully!"
-        echo "$host_ip"
+        echo "$host_ip" >&2
         exit 0
     else
         echo $error
