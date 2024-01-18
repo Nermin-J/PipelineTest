@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ####################################################################################################
 # This script allows/revokes access to key vault based on the input parameter (allow/revoke)
@@ -11,24 +11,24 @@ set -eu
 
 host_ip=""
 
-# function print_requirements() {
-#     echo "[ERROR] You must provide parameters:
-#             1. Key vault name 
-#             2. Subscription Id of the key vault
-#             3. Access action
-#             $(access_action_values_print)
-#             4. List of IPs (separated with space) access should be enabled for (required in case of Access action == allow ips || revoke except)"
-# }
+function print_requirements() {
+    echo "[ERROR] You must provide parameters:
+            1. Key vault name 
+            2. Subscription Id of the key vault
+            3. Access action
+            $(access_action_values_print)
+            4. List of IPs (separated with space) access should be enabled for (required in case of Access action == allow ips || revoke except)"
+}
 
-# function access_action_values_print {
-#     echo "possible values:      
-#                 - allow ips             -> enables access only for passed IPs
-#                 - allow host [and ips]  -> enables access for host and IPs if IPs are specified as 4th parameter
-#                 - allow all             -> enables completely public access
-#                 - revoke ips            -> revokes access to key vault only for specific IPs
-#                 - revoke except         -> revokes access to key vault but keeps it for specific IPs specified as 4th parameter
-#                 - revoke all            -> revokes access for all IPs and disables it completely"
-# }
+function access_action_values_print() {
+    echo "possible values:      
+                - allow ips             -> enables access only for passed IPs
+                - allow host [and ips]  -> enables access for host and IPs if IPs are specified as 4th parameter
+                - allow all             -> enables completely public access
+                - revoke ips            -> revokes access to key vault only for specific IPs
+                - revoke except         -> revokes access to key vault but keeps it for specific IPs specified as 4th parameter
+                - revoke all            -> revokes access for all IPs and disables it completely"
+}
 
 KEY_VAULT_NAME=${1:-""}
 KEY_VAULT_SUBSCRIPTION_ID=${2:-""}
