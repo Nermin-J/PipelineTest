@@ -51,7 +51,7 @@ jobs:
 
       - name: Print
         run: |
-          echo ${{ steps.variable.outputs }}
+          echo ${{ steps.variable.outputs.ip }}
 
       - name: Allow one-time access to Key Vault
         if: inputs.operation == 'allow'
