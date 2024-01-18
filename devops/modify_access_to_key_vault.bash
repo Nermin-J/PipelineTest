@@ -36,7 +36,7 @@ ACCESS_ACTION=${3:-""}
 LIST_OF_IPS=${4:-""} # list of IPs could hold list of allowed IPs or list of IPs access should be revoked for - the meaning of the list depends on 3rd parameter
 
 # convert to lowecase
-ACCESS_ACTION=${ACCESS_ACTION,,} 
+ACCESS_ACTION=$(echo "$ACCESS_ACTION" | tr '[:upper:]' '[:lower:]')
 
 if [ -z "$KEY_VAULT_NAME" ] || [ -z $KEY_VAULT_SUBSCRIPTION_ID ] || [ -z "$ACCESS_ACTION" ]; then
     print_requirements
