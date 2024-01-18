@@ -20,15 +20,15 @@ host_ip=""
 #             4. List of IPs (separated with space) access should be enabled for (required in case of Access action == allow ips || revoke except)"
 # }
 
-function access_action_values_print {
-    echo "possible values:      
-                - allow ips             -> enables access only for passed IPs
-                - allow host [and ips]  -> enables access for host and IPs if IPs are specified as 4th parameter
-                - allow all             -> enables completely public access
-                - revoke ips            -> revokes access to key vault only for specific IPs
-                - revoke except         -> revokes access to key vault but keeps it for specific IPs specified as 4th parameter
-                - revoke all            -> revokes access for all IPs and disables it completely"
-}
+# function access_action_values_print {
+#     echo "possible values:      
+#                 - allow ips             -> enables access only for passed IPs
+#                 - allow host [and ips]  -> enables access for host and IPs if IPs are specified as 4th parameter
+#                 - allow all             -> enables completely public access
+#                 - revoke ips            -> revokes access to key vault only for specific IPs
+#                 - revoke except         -> revokes access to key vault but keeps it for specific IPs specified as 4th parameter
+#                 - revoke all            -> revokes access for all IPs and disables it completely"
+# }
 
 KEY_VAULT_NAME=${1:-""}
 KEY_VAULT_SUBSCRIPTION_ID=${2:-""}
