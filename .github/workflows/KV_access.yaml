@@ -47,7 +47,7 @@ jobs:
       - name: Allow host
         id: variable
         run: |
-          ./devops/modify_access_to_key_vault.sh ${{ env.KEYVAULT_NAME }} ${{ env.AZURE_SUBSCRIPTION_ID }} 'allow host [and ips]'
+          sh ./devops/modify_access_to_key_vault.sh ${{ env.KEYVAULT_NAME }} ${{ env.AZURE_SUBSCRIPTION_ID }} 'allow host [and ips]'
 
       - name: Print
         run: |
