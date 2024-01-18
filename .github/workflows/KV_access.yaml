@@ -47,11 +47,11 @@ jobs:
       - name: Allow host
         id: variable
         run: |
-          echo "ip=$(sh ./devops/modify_access_to_key_vault.sh ${{ env.KEYVAULT_NAME }} ${{ env.AZURE_SUBSCRIPTION_ID }} "allow host [and ips]")" >> $GITHUB_OUTPUT
+          echo "ip=1111" >> $GITHUB_OUTPUT
 
       - name: Print
         run: |
-          echo ${{ steps.variable.outputs.ip }}
+          echo "${{ steps.variable.outputs.ip }}"
 
       - name: Allow one-time access to Key Vault
         if: inputs.operation == 'allow'
