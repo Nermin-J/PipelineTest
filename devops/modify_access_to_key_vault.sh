@@ -11,7 +11,7 @@ set -eu
 
 host_ip=""
 
-function print_requirements(){
+function print_requirements() {
     echo "[ERROR] You must provide parameters:
             1. Key vault name 
             2. Subscription Id of the key vault
@@ -20,7 +20,7 @@ function print_requirements(){
             4. List of IPs (separated with space) access should be enabled for (required in case of Access action == allow ips || revoke except)"
 }
 
-function access_action_values_print(){
+function access_action_values_print() {
     echo "possible values:      
                 - allow ips             -> enables access only for passed IPs
                 - allow host [and ips]  -> enables access for host and IPs if IPs are specified as 4th parameter
