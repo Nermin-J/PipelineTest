@@ -114,7 +114,7 @@ allow_access_to_key_vault_for_ips(){
 }
 
 # enables complete public access to Key vault
-allow_public_access_to_key_vault {
+allow_public_access_to_key_vault() {
     set -eu
 
     echo "[WARNING] Allowing complete public access to key vault '${KEY_VAULT_NAME}'!"
