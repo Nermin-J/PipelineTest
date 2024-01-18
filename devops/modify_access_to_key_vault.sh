@@ -11,14 +11,14 @@ set -eu
 
 host_ip=""
 
-function print_requirements() {
-    echo "[ERROR] You must provide parameters:
-            1. Key vault name 
-            2. Subscription Id of the key vault
-            3. Access action
-            $(access_action_values_print)
-            4. List of IPs (separated with space) access should be enabled for (required in case of Access action == allow ips || revoke except)"
-}
+# function print_requirements() {
+#     echo "[ERROR] You must provide parameters:
+#             1. Key vault name 
+#             2. Subscription Id of the key vault
+#             3. Access action
+#             $(access_action_values_print)
+#             4. List of IPs (separated with space) access should be enabled for (required in case of Access action == allow ips || revoke except)"
+# }
 
 function access_action_values_print() {
     echo "possible values:      
