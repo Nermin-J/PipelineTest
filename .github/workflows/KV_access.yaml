@@ -49,7 +49,7 @@ jobs:
         run: |
           chmod +x ./devops/modify_access_to_key_vault.sh
           OUTPUT=$(./devops/modify_access_to_key_vault.sh ${{ env.KEYVAULT_NAME }} ${{ env.AZURE_SUBSCRIPTION_ID }} 'allow host [and ips]')
-          echo -e "\n\n Output: $OUTPUT"
+          echo Output: $OUTPUT
         shell: bash
 
       - name: Print
