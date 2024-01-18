@@ -47,7 +47,7 @@ jobs:
       - name: Allow host
         id: variable
         run: |
-          echo "$(modify_access_to_key_vault.sh $KEYVAULT_NAME $CLUSTER_SUBSCRIPTION_ID "allow host [and ips]")" >> $GITHUB_OUTPUT
+          echo "ip=$(modify_access_to_key_vault.sh $KEYVAULT_NAME $CLUSTER_SUBSCRIPTION_ID "allow host [and ips]")" >> $GITHUB_OUTPUT
 
       - name: Print
         run: |
@@ -56,7 +56,6 @@ jobs:
       - name: Allow one-time access to Key Vault
         if: inputs.operation == 'allow'
         run: |
-          return 1
           sh ./devops/allow_access_to_KV_for_host.sh ${{ env.KEYVAULT_NAME }} ${{ env.AZURE_SUBSCRIPTION_ID }}
 
       - name: Revoke one-time access to Key Vault
