@@ -44,13 +44,10 @@ jobs:
           subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
           enable-AzPSSession: false
 
-      - name: Set permissions
-        run: |
-          chmod +x ./devops/modify_access_to_key_vault.sh
-
       - name: Allow host
         id: variable
         run: |
+          chmod +x ./devops/modify_access_to_key_vault.sh
           ./devops/modify_access_to_key_vault.sh ${{ env.KEYVAULT_NAME }} ${{ env.AZURE_SUBSCRIPTION_ID }} 'allow host [and ips]'
         shell: bash
 
