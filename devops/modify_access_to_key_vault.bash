@@ -11,7 +11,7 @@ set -eu
 
 host_ip=""
 
-function print_requirements() {
+print_requirements() {
     echo "[ERROR] You must provide parameters:
             1. Key vault name 
             2. Subscription Id of the key vault
@@ -20,7 +20,7 @@ function print_requirements() {
             4. List of IPs (separated with space) access should be enabled for (required in case of Access action == allow ips || revoke except)"
 }
 
-function access_action_values_print() {
+access_action_values_print() {
     echo "possible values:      
                 - allow ips             -> enables access only for passed IPs
                 - allow host [and ips]  -> enables access for host and IPs if IPs are specified as 4th parameter
@@ -62,7 +62,7 @@ echo "[INFO] Setting up subscription of the Key vault."
 az account set --name $KEY_VAULT_SUBSCRIPTION_ID --output none
 
 # checks if any IP was left in the list of allowed IPs after revoking access. If not, access will be completely disabled
-function revoke_access_to_key_vault_if_no_IPs_addedd() {
+revoke_access_to_key_vault_if_no_IPs_addedd() {
     echo "[INFO] Checking if there are any IPs left as allowed IPs!"
     network_rules="$(az keyvault network-rule list --name $KEY_VAULT_NAME --query "ipRules[*]" --output tsv)"
 
@@ -74,7 +74,7 @@ function revoke_access_to_key_vault_if_no_IPs_addedd() {
 }
 
 # enables access to Key vault only for specific (passed) IPs
-function allow_access_to_key_vault_for_ips(){
+allow_access_to_key_vault_for_ips(){
     set -eu
 
     list_of_allowed_ips="$1"
@@ -114,7 +114,7 @@ function allow_access_to_key_vault_for_ips(){
 }
 
 # enables complete public access to Key vault
-function allow_public_access_to_key_vault {
+allow_public_access_to_key_vault {
     set -eu
 
     echo "[WARNING] Allowing complete public access to key vault '${KEY_VAULT_NAME}'!"
@@ -133,7 +133,7 @@ function allow_public_access_to_key_vault {
 }
 
 # revokes access to Key vault for IPs specified in 'LIST_OF_IPS'
-function revoke_access_to_key_vault_for_ips(){
+revoke_access_to_key_vault_for_ips(){
     set -eu
 
     list_of_disallowed_ips="$1"
@@ -149,7 +149,7 @@ function revoke_access_to_key_vault_for_ips(){
 }
 
 # revokes access to Key vault for all IPs except 'LIST_OF_IPS'
-function revoke_and_keep_access_to_key_vault(){
+revoke_and_keep_access_to_key_vault(){
     set -eu
 
     list_of_allowed_ips="$1"
@@ -186,7 +186,7 @@ function revoke_and_keep_access_to_key_vault(){
 }
 
 # revokes access to Key vault for all IPs
-function revoke_access_to_key_vault(){
+revoke_access_to_key_vault(){
     set -eu
     echo "[INFO] Revoking access to Key vault '${KEY_VAULT_NAME}' by Disabling public access and removing all IPs from the list of allowed IPs!"
     az keyvault update --name $KEY_VAULT_NAME --public-network-access Disabled --default-action Deny --set properties.networkAcls.ipRules=[] --output none
