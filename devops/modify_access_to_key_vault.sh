@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 ####################################################################################################
 # This script allows/revokes access to key vault based on the input parameter (allow/revoke)
