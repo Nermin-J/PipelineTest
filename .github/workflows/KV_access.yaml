@@ -48,8 +48,7 @@ jobs:
         id: variable
         run: |
           chmod +x ./devops/modify_access_to_key_vault.sh
-          OUTPUT=$(./devops/modify_access_to_key_vault.sh ${{ env.KEYVAULT_NAME }} ${{ env.AZURE_SUBSCRIPTION_ID }} 'allow host [and ips]' 2>&1 >/dev/null)
-          echo Output: $OUTPUT
+          echo "ip=$(./devops/modify_access_to_key_vault.sh ${{ env.KEYVAULT_NAME }} ${{ env.AZURE_SUBSCRIPTION_ID }} 'allow host [and ips]' 2>&1 >/dev/null)" >> $GITHUB_OUTPUT
         shell: bash
 
       - name: Print
