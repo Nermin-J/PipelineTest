@@ -1,0 +1,31 @@
+name: Test allow/disallow KV access new
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+    id-token: write
+    contents: read
+    issues: write
+
+jobs:
+  allow-disallow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ env.AZURE_CLIENT_ID }}
+          tenant-id: ${{ env.AZURE_TENANT_ID }}
+          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          enable-AzPSSession: false
+      
+      - name: Get resource
+        run: |
+          az resource show /subscriptions/2bae9ddb-756e-421b-83f0-80795ceb6e59/resourceGroups/rg_nerko_az_204/providers/Microsoft.KeyVault/vaults/clustersecrets
