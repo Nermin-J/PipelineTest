@@ -1,4 +1,4 @@
-name: Test allow/disallow KV access new
+name: Test get res by id
 
 on:
   push:
@@ -38,4 +38,5 @@ jobs:
       - name: Get resource
         run: |
           st_id=$(az storage account show -g ${{ env.RG_NAME }} -n ${{ env.STORAGE_NAME }} --query "id" --output tsv)
+          echo id is = $st_id
           az resource show --ids $st_id
