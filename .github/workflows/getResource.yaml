@@ -35,4 +35,4 @@ jobs:
       
       - name: Get resource
         run: |
-          az resource show /subscriptions/2bae9ddb-756e-421b-83f0-80795ceb6e59/resourceGroups/rg_nerko_az_204/providers/Microsoft.KeyVault/vaults/clustersecrets
+          az resource show --ids /subscriptions/2bae9ddb-756e-421b-83f0-80795ceb6e59/resourceGroups/rg_nerko_az_204/providers/Microsoft.KeyVault/vaults/clustersecrets
