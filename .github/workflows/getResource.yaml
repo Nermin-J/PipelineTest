@@ -13,6 +13,8 @@ permissions:
 env:
   KEYVAULT_NAME: "clustersecrets"
   SECRET_NAME: "testSecret"
+  STORAGE_NAME: "testaccess1"
+  RG_NAME: "rg_nerko_az_204"
   AZURE_CLIENT_ID: "fd12270e-bde4-4e04-ba38-7123f295c33b"
   AZURE_TENANT_ID: "b00367e2-193a-4f48-94de-7245d45c0947"
   AZURE_SUBSCRIPTION_ID: "2bae9ddb-756e-421b-83f0-80795ceb6e59"
@@ -35,4 +37,5 @@ jobs:
       
       - name: Get resource
         run: |
-          az resource show --ids /subscriptions/2bae9ddb-756e-421b-83f0-80795ceb6e59/resourceGroups/rg_nerko_az_204/providers/Microsoft.KeyVault/vaults/clustersecrets
+          st_id=$(az storage account show -g ${{ env.RG_NAME }} -n ${{ env.STORAGE_NAME }} --query "id" --output tsv)
+          az resource show --ids $st_id
