@@ -29,5 +29,5 @@ jobs:
 
       - name: Allow access to key vault for specific resources
         run: |
-          chmod +x ./devops/key_vault_sec_allow_specific_resources.bash
+          chmod +x ./devops/key_vault_sec_allow_specific_resources.sh
           ./devops/key_vault_sec_allow_specific_resources.sh $the_env
