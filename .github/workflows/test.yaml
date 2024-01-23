@@ -23,4 +23,5 @@ jobs:
         run: |
           env=${the_env,,}
           echo $env
+          echo "format('MEGATRON_{0}_SERVICE_PRINCIPAL_PASSWORD', the_env)" >> $(pwd)/keypair.pem
         shell: bash
