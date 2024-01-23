@@ -1,0 +1,26 @@
+name: Test env var
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+    id-token: write
+    contents: read
+    issues: write
+
+jobs:
+  revoke-access-dev:
+    runs-on: ubuntu-latest
+    env:
+      the_env: DEV
+    steps:
+      - uses: actions/checkout@main
+
+      # Log into Azure
+      - name: Azure login
+        run: |
+          env=${the_env,,}
+          echo $env
+        shell: bash
