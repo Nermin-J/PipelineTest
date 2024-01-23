@@ -27,7 +27,7 @@ jobs:
       #     cat $(pwd)/keypair.pem
       #   shell: bash
 
-      - name: Allow access to key vault for specific resources
+      - name: Allow access to key vault for specific resources ($the_env)
         run: |
           chmod +x ./devops/key_vault_sec_allow_specific_resources.sh
           ./devops/key_vault_sec_allow_specific_resources.sh $the_env

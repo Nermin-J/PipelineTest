@@ -60,7 +60,7 @@ function include_app_gateway_ip() {
     # get id of the gateway's public IP
     app_gateway_ip_id=$(az network application-gateway frontend-ip show --gateway-name $APP_GATEWAY_NAME --name $APP_GATEWAY_FRONTEND_IP_CONFIG_NAME --resource-group $RESOURCE_GROUP --query "publicIPAddress.id" --output tsv)
     # Get gateway's IP by id
-    app_gateway_ip="$(az resource show --ids $ip_id --query "properties.ipAddress" --output tsv)"
+    app_gateway_ip="$(az resource show --ids $app_gateway_ip_id --query "properties.ipAddress" --output tsv)"
 
     echo "[INFO] Public IP of the App gateway is: $app_gateway_ip"
     allowed_ips="$allowed_ips $app_gateway_ip"
