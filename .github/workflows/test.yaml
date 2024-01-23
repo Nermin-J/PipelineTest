@@ -19,10 +19,14 @@ jobs:
       - uses: actions/checkout@main
 
       # Log into Azure
-      - name: Azure login
+      # - name: Azure login
+      #   run: |
+      #     env=${the_env,,}
+      #     echo $env
+      #     echo "${{ format('MEGATRON_{0}_SERVICE_PRINCIPAL_PASSWORD', env.the_env) }}" >> $(pwd)/keypair.pem
+      #     cat $(pwd)/keypair.pem
+      #   shell: bash
+
+      - name: Allow access to key vault for specific resources
         run: |
-          env=${the_env,,}
-          echo $env
-          echo "${{ format('MEGATRON_{0}_SERVICE_PRINCIPAL_PASSWORD', env.the_env) }}" >> $(pwd)/keypair.pem
-          cat $(pwd)/keypair.pem
-        shell: bash
+          ./devops/key_vault_sec_allow_specific_resources.bash 'dev'
