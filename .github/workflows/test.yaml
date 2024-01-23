@@ -18,6 +18,10 @@ jobs:
     steps:
       - uses: actions/checkout@main
 
+      - name: Make script executable
+        run: |
+          chmod +x ./devops/key_vault_sec_allow_specific_resources.sh
+
       # Log into Azure
       # - name: Azure login
       #   run: |
@@ -29,5 +33,4 @@ jobs:
 
       - name: Allow access to key vault for specific resources ($the_env)
         run: |
-          chmod +x ./devops/key_vault_sec_allow_specific_resources.sh
           ./devops/key_vault_sec_allow_specific_resources.sh $the_env
