@@ -12,6 +12,8 @@ if [[ "$ENV" != "dev" && "$ENV" != "staging" && "$ENV" != "prod" && "$ENV" != "k
     exit 1
 fi
 
+echo env is $ENV
+
 # Load env variables
 source ../.github/envs/$ENV.env
 
