@@ -3,7 +3,7 @@
 name: Create/Update Mongo schema
 on:  
   schedule:      
-    - cron: '56 12 * * *' # As time specified is UTC time, job will actually run at 6h (UTC +1) on Sunday (2h after the Databricks job which populates the data in Mongo)
+    - cron: '02 14 * * *' # As time specified is UTC time, job will actually run at 6h (UTC +1) on Sunday (2h after the Databricks job which populates the data in Mongo)
 
   workflow_dispatch:
     inputs:
