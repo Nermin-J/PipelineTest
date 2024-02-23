@@ -1,0 +1,71 @@
+# This workflow creates/updates MongoDB schema
+
+name: Create/Update Mongo schema
+on:  
+  schedule:      
+    - cron: '56 12 * * *' # As time specified is UTC time, job will actually run at 6h (UTC +1) on Sunday (2h after the Databricks job which populates the data in Mongo)
+
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: "Stage to update schema for"
+        required: true
+        default: "all"
+        type: choice
+        options:
+          - all
+          - dev
+          - staging
+          - prod
+          
+      region:
+        description: "Region"
+        required: true
+        default: "all"
+        type: choice
+        options:
+          - all
+          - eu
+          - korea
+
+jobs:
+  set-desired-region-stage:
+    runs-on: ubuntu-latest
+    outputs:
+      stages: ${{ steps.set-stage-region.outputs.stages }}
+      regions: ${{ steps.set-stage-region.outputs.regions }}
+    steps:
+      - name: Set desired region & stage based on inputs
+        id: set-stage-region
+        run: |
+          region="${{ inputs.region }}"
+          stage="${{ inputs.stage }}"
+          
+          echo $(github.event_name == 'schedule')
+
+          if [[ github.event_name == 'schedule' ]] || [[ $region == "all" ]] ; then
+            echo 'regions=["eu", "korea"]' >> $GITHUB_OUTPUT
+          else
+            echo 'regions=["${{ inputs.region }}"]' >> $GITHUB_OUTPUT
+          fi
+
+          if [[ github.event_name == 'schedule' ]] || [[ $stage == "all" ]]; then
+            echo 'stages=["dev", "staging", "prod"]' >> $GITHUB_OUTPUT
+          else
+            echo 'stages=["${{ inputs.stage }}"]' >> $GITHUB_OUTPUT
+          fi          
+
+  create-update-schema:
+    needs: set-desired-region-stage
+    strategy:
+      fail-fast: false
+      matrix:
+        stage: ${{ fromJson(needs.set-desired-region-stage.outputs.stages) }}
+        region: ${{ fromJson(needs.set-desired-region-stage.outputs.regions) }}
+
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: |
+          echo test
