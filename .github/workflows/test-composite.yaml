@@ -14,10 +14,11 @@ jobs:
       - name: Test ls 
         run: | 
           cd .
+          ls -l
 
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Test ls 
         run: | 
           ls -l
