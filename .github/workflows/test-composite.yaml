@@ -13,16 +13,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          sparse-checkout: |
-            .github
 
       - name: Test ls 
         run: | 
           ls -l
 
       - name: Call composite
-        uses: .github/actions/
+        uses: ./actions/
 
       - name: Test ls 
         run: | 
