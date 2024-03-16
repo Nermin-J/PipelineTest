@@ -1,0 +1,14 @@
+name: Composite action caller
+
+on: [ workflow_dispatch, push ]
+
+permissions:
+  id-token: write
+  contents: read
+  issues: write
+
+jobs:
+  test_composite:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ls -l
