@@ -11,6 +11,10 @@ jobs:
   test_composite:
     runs-on: ubuntu-latest
     steps:
+      - name: Make dir
+        run: |
+          mkdir test_dir
+
       - name: Test ls 
         run: | 
           ls -l
