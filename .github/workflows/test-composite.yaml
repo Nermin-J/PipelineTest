@@ -15,14 +15,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           sparse-checkout: |
-            .github 
+            .github
 
       - name: Test ls 
         run: | 
           ls -l
 
       - name: Call composite
-        uses: ./.github/actions/
+        uses: .github/actions/
 
       - name: Test ls 
         run: | 
