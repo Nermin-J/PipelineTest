@@ -1,0 +1,17 @@
+name: First composite action
+
+runs:
+  using: composite
+
+  steps:
+    - name: ls 1
+      run: |
+        ls -l
+
+    - name: Make dir
+      run: |
+        mkdir test_dir_composite
+
+    - name: ls 2
+      run: | 
+        ls -l

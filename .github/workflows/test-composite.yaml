@@ -20,9 +20,8 @@ jobs:
         run: | 
           ls -l
 
-      - name: Make dir
-        run: |
-          mkdir test_dir
+      - name: Call composite
+        uses: ./.github/actions/
 
       - name: Test ls 
         run: | 
