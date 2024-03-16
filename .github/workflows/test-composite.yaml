@@ -11,4 +11,6 @@ jobs:
   test_composite:
     runs-on: ubuntu-latest
     steps:
-      - name: ls -l
+      - name: Test ls 
+        run: | 
+          ls -l
