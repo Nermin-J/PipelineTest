@@ -11,9 +11,13 @@ jobs:
   test_composite:
     runs-on: ubuntu-latest
     steps:
+      - name: Test ls 
+        run: | 
+          cd .
+
       - name: Checkout
         uses: actions/checkout@v4
-
+        
       - name: Test ls 
         run: | 
           ls -l
