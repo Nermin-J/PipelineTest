@@ -7,11 +7,14 @@ runs:
     - name: ls 1
       run: |
         ls -l
+      shell: bash
 
     - name: Make dir
       run: |
         mkdir test_dir_composite
-
+      shell: bash
+      
     - name: ls 2
       run: | 
         ls -l
+      shell: bash
