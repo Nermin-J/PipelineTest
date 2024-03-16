@@ -16,10 +16,6 @@ jobs:
         with:
           ref: master
 
-      - name: Make dir
-        run: |
-          mkdir test_dir
-
       - name: Test ls 
         run: | 
           ls -l
