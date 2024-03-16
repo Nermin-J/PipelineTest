@@ -29,3 +29,15 @@ jobs:
         run: |          
           cat test.env
         shell: bash
+
+      - name: Load env
+        id: loaded-env
+        run: |
+          while IFS= read -r line || [ -n "$line" ]; do
+            echo "${line/=/=}" >> "$GITHUB_OUTPUT"
+          done < "test.env"
+        shell: bash
+
+      - name: Print value from env
+        run: |
+          echo ${{ steps.loaded-env.outputs.secret }}
