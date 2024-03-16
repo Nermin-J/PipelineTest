@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Test ls 
         run: | 
-          cd .
+          cd ~
           ls -l
 
       - name: Checkout
