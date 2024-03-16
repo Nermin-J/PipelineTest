@@ -14,7 +14,7 @@ jobs:
       - name: Test ls 
         run: | 
           cd ~
-          ls -l
+          ls -l runners
 
       - name: Checkout
         uses: actions/checkout@v4
