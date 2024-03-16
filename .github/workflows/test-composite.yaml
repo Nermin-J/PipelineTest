@@ -11,6 +11,19 @@ jobs:
   test_composite:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - name: Make dir
+        run: |
+          mkdir test_dir
+
+      - name: Test ls 
+        run: | 
+          ls -l
+
       - name: Make dir
         run: |
           mkdir test_dir
