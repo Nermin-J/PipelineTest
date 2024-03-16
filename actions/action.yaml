@@ -1,11 +1,11 @@
 name: First composite action
 
-runs:
-  using: composite
-  defaults:
+defaults:
   run:
     shell: bash
 
+runs:
+  using: composite 
   steps:
     - name: ls 1
       run: |
