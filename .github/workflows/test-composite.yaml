@@ -24,3 +24,8 @@ jobs:
       - name: Test ls 
         run: | 
           ls -l
+
+      - name: Print file
+        run: |          
+          cat test.env
+        shell: bash
