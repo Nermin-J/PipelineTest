@@ -12,7 +12,7 @@ runs:
     - name: Make dir
       run: |
         mkdir test_dir_composite
-        cat "secret=something" > test.env
+        echo "secret=something" > test.env
         cat test.env
       shell: bash
       
