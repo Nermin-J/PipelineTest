@@ -2,7 +2,9 @@ name: First composite action
 
 runs:
   using: composite
-  shell: bash
+  defaults:
+  run:
+    shell: bash
 
   steps:
     - name: ls 1
