@@ -35,38 +35,16 @@ jobs:
       - name: Install Newman
         run: npm install -g newman
 
-      - name: Run Postman Collection
-        id: execute_commands
+      - name: Run Smoke tests
+        id: smoke_tests
         run: |
           newman run postmanCollections/sample-collection.postman_collection.json  
-      
+
       - name: test failure
-        if: always() && steps.execute_commands.outcome == 'failure'
-        run: echo failed
-
-      - name: test success
-        if: always() && steps.execute_commands.outcome == 'success'
-        run: echo success
-
-      - name: Proceed with subsequent steps 
-        if: always()       
+        if: always()
         run: |
-          echo test print
-
-      - name: Proceed with subsequent steps 2
-        run: |
-          echo test print 2
-
-      # - name: Capture exit code
-      #   run: echo $?
-
-      # - name: Proceed based on result
-      #   run: |
-      #     if [ $? -eq 0 ]; then
-      #       echo "Postman collection ran successfully"
-      #       # Proceed with further actions
-      #     else
-      #       echo "Error: Postman collection failed"
-      #       # Take corrective actions or halt the workflow
-      #       exit 1
-      #     fi
+          if [ ${{ steps.smoke_tests.outcome }} == 'failure' ]; then
+            echo "Rolling back the deployment as smoke tests didn't pass!"
+          else
+            echo "All good. proceeding!"
+          fi
