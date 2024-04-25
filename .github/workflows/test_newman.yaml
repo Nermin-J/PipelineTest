@@ -30,12 +30,9 @@ jobs:
     runs-on: ubuntu-latest    
     steps:
       - uses: actions/checkout@v4
-      # - name: Install Newman
-      #   run: |
-      #     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-      #     nvm install 20
-
-      #     npm install -g newman
+      - name: Check Newman version
+        run: |
+          newman -v
         
       - name: Test Newman
         run: |
