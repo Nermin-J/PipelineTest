@@ -26,7 +26,7 @@ on:
           - korea
 
 jobs:
-  create-update-schema:
+  test:
     runs-on: ubuntu-latest    
     steps:
       - name: Checkout code
@@ -42,10 +42,11 @@ jobs:
 
       - name: test failure
         if: always()
-        run: |
-          echo ${{ steps.smoke_tests.outcome }}
+        run: |          
           if [ ${{ steps.smoke_tests.outcome }} == 'failure' ]; then
             echo "Rolling back the deployment as smoke tests didn't pass!"
+          elif [ ${{ steps.smoke_tests.outcome }} == 'skipped' ]; then
+            echo "Workflow canceled!"
           else
             echo "All good! Proceeding!"
           fi
