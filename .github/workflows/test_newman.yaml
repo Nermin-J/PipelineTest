@@ -36,8 +36,17 @@ jobs:
         
       - name: Test Newman
         run: |
-          result=$(newman run postmanCollections/sample-collection.postman_collection.json)
-          echo $result
+          # result=$(newman run postmanCollections/sample-collection.postman_collection.json)
+          # echo $result
+
+          const newman = require('newman'); // require newman in your project
+          newman.run({
+              collection: require('postmanCollections/sample-collection.postman_collection.json'),
+              reporters: 'cli'
+          }, function (err) {
+            if (err) { throw err; }
+              console.log('collection run complete!');
+          });
 
       - name: Continue
         run: |
