@@ -30,13 +30,18 @@ jobs:
     runs-on: ubuntu-latest    
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2      
+        uses: actions/checkout@v2     
+        
+      - name: set variables
+        id: set_vars
+        run: |
+          echo "test_page=Youtube" >> $GITHUB_OUTPUT
 
       - name: Run Smoke tests
         id: smoke_tests
         run: |
           newman run postmanCollections/sample-collection.postman_collection.json --environment postmanCollections/smoke-tests.postman_environment.json \
-          --env-var test=Google
+          --env-var test=${{ steps.set_vars.outputs.test_page }}
         shell: bash
 
       - name: test failure
