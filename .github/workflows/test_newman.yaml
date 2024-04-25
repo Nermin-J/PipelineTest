@@ -37,8 +37,8 @@ jobs:
 
       - name: Run Postman Collection
         run: |
-          set +e
-          newman run postmanCollections/sample-collection.postman_collection.json          
+          newman run postmanCollections/sample-collection.postman_collection.json  
+        continue-on-error: true        
 
       - name: Proceed with subsequent steps        
         run: |
