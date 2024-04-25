@@ -37,6 +37,7 @@ jobs:
         run: |
           newman run postmanCollections/sample-collection.postman_collection.json --environment postmanCollections/smoke-tests.postman_environment.json \
           && --env-var test=Google
+        shell: bash
 
       - name: test failure
         if: always()
