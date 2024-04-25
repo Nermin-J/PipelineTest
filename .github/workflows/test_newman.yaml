@@ -40,11 +40,11 @@ jobs:
         run: |
           newman run postmanCollections/sample-collection.postman_collection.json  
       
-      - name: test
+      - name: test failure
         if: always() && steps.execute_commands.outcome == 'failure'
         run: echo failed
 
-      - name: test
+      - name: test success
         if: always() && steps.execute_commands.outcome == 'success'
         run: echo success
 
