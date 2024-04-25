@@ -40,3 +40,7 @@ jobs:
       - name: Test Newman
         run: |
           newman run postmanCollections/sample-collection.postman_collection.json
+
+      - name: Continue
+        run: |
+          echo test print
