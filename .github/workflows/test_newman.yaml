@@ -1,0 +1,36 @@
+name: Test Newman
+on:  
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: "Stage to update schema for"
+        required: true
+        default: "all"
+        type: choice
+        options:
+          - all
+          - dev
+          - staging
+          - prod
+          
+      region:
+        description: "Region"
+        required: true
+        default: "all"
+        type: choice
+        options:
+          - all
+          - eu
+          - korea
+
+jobs:
+  create-update-schema:
+    runs-on: ubuntu-latest    
+    steps:
+      - name: Install Newman
+        run: |
+          brew install newman
+        
+      - name: Test Newman
+        run: |
+          newman run postmanCollections/sample-collection.postman_collection.json

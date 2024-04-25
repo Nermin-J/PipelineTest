@@ -1,0 +1,45 @@
+{
+	"info": {
+		"_postman_id": "9183dee4-6f77-448c-88bd-505cfad4c7af",
+		"name": "sample-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7936282"
+	},
+	"item": [
+		{
+			"name": "To google",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://de.wikipedia.org/wiki/Wikipedia",
+					"protocol": "https",
+					"host": [
+						"de",
+						"wikipedia",
+						"org"
+					],
+					"path": [
+						"wiki",
+						"Wikipedia"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
