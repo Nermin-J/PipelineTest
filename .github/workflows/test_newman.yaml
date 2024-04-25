@@ -37,12 +37,8 @@ jobs:
 
       - name: Run Postman Collection
         run: |
-          newman run postmanCollections/sample-collection.postman_collection.json
-          exit_code=$?
-          if [ $exit_code -ne 0 ]; then
-            echo "Error: Newman run command failed with exit code $exit_code"
-            # You can send a notification or take corrective actions here
-          fi
+          set -eu
+          newman run postmanCollections/sample-collection.postman_collection.json          
 
       - name: Proceed with subsequent steps        
         run: |
