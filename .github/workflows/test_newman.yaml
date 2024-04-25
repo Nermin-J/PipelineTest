@@ -36,7 +36,7 @@ jobs:
         id: smoke_tests
         run: |
           newman run postmanCollections/sample-collection.postman_collection.json --environment postmanCollections/smoke-tests.postman_environment.json \
-          && --env-var test=Google
+          --env-var test=Google
         shell: bash
 
       - name: test failure
