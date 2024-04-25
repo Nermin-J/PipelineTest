@@ -36,18 +36,28 @@ jobs:
         run: npm install -g newman
 
       - name: Run Postman Collection
-        run: newman run postmanCollections/sample-collection.postman_collection.json || true
-
-      - name: Capture exit code
-        run: echo $?
-
-      - name: Proceed based on result
         run: |
-          if [ $? -eq 0 ]; then
-            echo "Postman collection ran successfully"
-            # Proceed with further actions
-          else
-            echo "Error: Postman collection failed"
-            # Take corrective actions or halt the workflow
-            exit 1
+          newman run postmanCollections/sample-collection.postman_collection.json || true
+          exit_code=$?
+          if [ $exit_code -ne 0 ]; then
+            echo "Error: Newman run command failed with exit code $exit_code"
+            # You can send a notification or take corrective actions here
           fi
+
+      - name: Proceed with subsequent steps        
+        run: |
+          echo test print
+
+      # - name: Capture exit code
+      #   run: echo $?
+
+      # - name: Proceed based on result
+      #   run: |
+      #     if [ $? -eq 0 ]; then
+      #       echo "Postman collection ran successfully"
+      #       # Proceed with further actions
+      #     else
+      #       echo "Error: Postman collection failed"
+      #       # Take corrective actions or halt the workflow
+      #       exit 1
+      #     fi
