@@ -26,7 +26,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://de.wikipedia.org/wiki/{{page}}",
+					"raw": "https://de.wikipedia.org/wiki/{{test}}",
 					"protocol": "https",
 					"host": [
 						"de",

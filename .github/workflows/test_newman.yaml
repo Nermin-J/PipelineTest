@@ -36,7 +36,7 @@ jobs:
         id: smoke_tests
         run: |
           newman run postmanCollections/sample-collection.postman_collection.json --environment postmanCollections/smoke-tests.postman_environment.json \
-          && --env-var test=test
+          && --env-var test=Google
 
       - name: test failure
         if: always()
