@@ -46,7 +46,7 @@ jobs:
           if [ ${{ steps.smoke_tests.outcome }} == 'failure' ]; then
             echo "Rolling back the deployment as smoke tests didn't pass!"
           else
-            echo "All good. proceeding!"
+            echo "All good! Proceeding!"
           fi
       
       - name: continue
