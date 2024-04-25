@@ -31,17 +31,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2     
-        
-      - name: set variables
-        id: set_vars
-        run: |
-          echo "test_page=Youtube" >> $GITHUB_OUTPUT
 
       - name: Run Smoke tests
         id: smoke_tests
         run: |
+          test_page=random
           newman run postmanCollections/sample-collection.postman_collection.json --environment postmanCollections/smoke-tests.postman_environment.json \
-          --env-var test=${{ steps.set_vars.outputs.test_page }}
+          --env-var test=$test_page
         shell: bash
 
       - name: test failure
