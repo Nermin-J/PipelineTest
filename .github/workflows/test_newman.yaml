@@ -38,9 +38,10 @@ jobs:
       - name: Run Postman Collection
         run: |
           newman run postmanCollections/sample-collection.postman_collection.json  
-        continue-on-error: true        
+        # continue-on-error: true        
 
-      - name: Proceed with subsequent steps        
+      - name: Proceed with subsequent steps 
+        if: always()       
         run: |
           echo test print
 
