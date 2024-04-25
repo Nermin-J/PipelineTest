@@ -36,7 +36,8 @@ jobs:
         
       - name: Test Newman
         run: |
-          newman run postmanCollections/sample-collection.postman_collection.json
+          result=$(newman run postmanCollections/sample-collection.postman_collection.json)
+          echo $result
 
       - name: Continue
         run: |
