@@ -37,7 +37,7 @@ jobs:
 
       - name: Run Postman Collection
         run: |
-          set -eu
+          set +e
           newman run postmanCollections/sample-collection.postman_collection.json          
 
       - name: Proceed with subsequent steps        
