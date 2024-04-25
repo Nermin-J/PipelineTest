@@ -45,6 +45,10 @@ jobs:
         run: |
           echo test print
 
+      - name: Proceed with subsequent steps 2
+        run: |
+          echo test print 2
+
       # - name: Capture exit code
       #   run: echo $?
 
