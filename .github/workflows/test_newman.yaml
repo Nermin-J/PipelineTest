@@ -30,15 +30,12 @@ jobs:
     runs-on: ubuntu-latest    
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install Newman
-        run: npm install -g newman
+        uses: actions/checkout@v2      
 
       - name: Run Smoke tests
         id: smoke_tests
         run: |
-          newman run postmanCollections/sample-collection.postman_collection.json --environment smoke-tests.postman_environment.json
+          newman run postmanCollections/sample-collection.postman_collection.json --environment postmanCollections/smoke-tests.postman_environment.json
 
       - name: test failure
         if: always()
