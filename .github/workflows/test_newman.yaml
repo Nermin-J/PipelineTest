@@ -48,3 +48,6 @@ jobs:
           else
             echo "All good. proceeding!"
           fi
+      
+      - name: continue
+        run: echo continue test
