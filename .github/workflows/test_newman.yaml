@@ -43,6 +43,7 @@ jobs:
       - name: test failure
         if: always()
         run: |
+          echo ${{ steps.smoke_tests.outcome }}
           if [ ${{ steps.smoke_tests.outcome }} == 'failure' ]; then
             echo "Rolling back the deployment as smoke tests didn't pass!"
           else
