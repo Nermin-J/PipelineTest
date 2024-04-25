@@ -29,25 +29,25 @@ jobs:
   create-update-schema:
     runs-on: ubuntu-latest    
     steps:
-      - uses: actions/checkout@v4
-      - name: Check Newman version
-        run: |
-          newman --version
-        
-      - name: Test Newman
-        run: |
-          # result=$(newman run postmanCollections/sample-collection.postman_collection.json)
-          # echo $result
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-          const newman = require('newman'); // require newman in your project
-          newman.run({
-              collection: require('postmanCollections/sample-collection.postman_collection.json'),
-              reporters: 'cli'
-          }, function (err) {
-            if (err) { throw err; }
-              console.log('collection run complete!');
-          });
+      - name: Install Newman
+        run: npm install -g newman
 
-      - name: Continue
+      - name: Run Postman Collection
+        run: newman run postmanCollections/sample-collection.postman_collection.json
+
+      - name: Capture exit code
+        run: echo $?
+
+      - name: Proceed based on result
         run: |
-          echo test print
+          if [ $? -eq 0 ]; then
+            echo "Postman collection ran successfully"
+            # Proceed with further actions
+          else
+            echo "Error: Postman collection failed"
+            # Take corrective actions or halt the workflow
+            exit 1
+          fi
