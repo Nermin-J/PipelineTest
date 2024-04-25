@@ -35,7 +35,8 @@ jobs:
       - name: Run Smoke tests
         id: smoke_tests
         run: |
-          newman run postmanCollections/sample-collection.postman_collection.json --environment postmanCollections/smoke-tests.postman_environment.json
+          newman run postmanCollections/sample-collection.postman_collection.json --environment postmanCollections/smoke-tests.postman_environment.json |
+          --env-var test=test
 
       - name: test failure
         if: always()
